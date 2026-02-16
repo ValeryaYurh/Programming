@@ -29,22 +29,25 @@ namespace t1
                 if (isNumber == true && input1.Length == 3)
                 {
                     int mod = number % 100;
-                    int second_number = mod/10;
-                    int third_number = mod%10;
+                    int second_number = mod / 10;
+                    int third_number = mod % 10;
 
-                    if (second_number > third_number) Console.WriteLine("Второе число больше последнего");
-                    else if (second_number < third_number) Console.WriteLine("Последнее число больше второго");
-                    else Console.WriteLine("Второе и последнее число одинаковы");
+                    if (second_number > third_number) Console.WriteLine("\nВторое число больше последнего");
+                    else if (second_number < third_number) Console.WriteLine("\nПоследнее число больше второго");
+                    else Console.WriteLine("\nВторое и последнее число одинаковы");
                 }
 
                 int answer;
-                Console.WriteLine("Хотите ли продолжить?(1-да; 2-нет): ");
+                Console.WriteLine("\n-------Меню-------");
+                Console.WriteLine("1-Продолжить\n2-Закончить\n------------------\n\nВведите команду:");
                 string? input2 = Console.ReadLine();
                 isNumber = int.TryParse(input2, out answer);
 
                 while (isNumber == false || (answer != 1 && answer != 2))
                 {
-                    Console.WriteLine("Ошибка! Введено некорректное значение.\nВведите заново ответ\nХотите ли продолжить?(1-да; 2-нет): ");
+                    Console.WriteLine("Ошибка! Введено некорректное значение.\n");
+                    Console.WriteLine("\n-------Меню-------");
+                    Console.WriteLine("1-Продолжить\n2-Закончить\n------------------\n\nВведите команду:");
                     input2 = Console.ReadLine();
 
                     isNumber = int.TryParse(input2, out answer);
@@ -55,8 +58,7 @@ namespace t1
                     case 1:
                         continue;
                     case 2:
-                        Console.ReadKey();
-                        break;
+                        return;
                 }
             }
         }
