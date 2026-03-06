@@ -1,6 +1,6 @@
 namespace Services.Task2
 {
-    public static class FunctionalCalc
+    public static class Calculate
     {
         public static double Calculation(double z, double b)
         {

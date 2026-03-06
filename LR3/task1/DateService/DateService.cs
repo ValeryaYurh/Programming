@@ -10,10 +10,9 @@ namespace Services.Task3
 			return dateTime.ToString("dddd");
 		}
 
-		public static int GetDaysSpan(int day, int month, int year)
+		public static TimeSpan GetDaysSpan(int day, int month, int year)
 		{
-            int result = (DateTime.Now - new DateTime(year, month, day)).Days;
-			return Math.Abs(result);
+			return (DateTime.Now - new DateTime(year, month, day)).Duration();
 		}
 	}
 }

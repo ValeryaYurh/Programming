@@ -43,8 +43,8 @@ namespace t2
                     isNumber = double.TryParse(input2, out b);
                 }
 
-                double y = FunctionalCalc.Calculation(z, b);
-                Console.WriteLine($"Результат выволнения = {y}");
+                double y = Calculate.Calculation(z, b);
+                Console.WriteLine($"Результат выполнения = {y}");
                 if (z < 1) Console.WriteLine("Номер ветки 1(z<1)\n");
                 else Console.WriteLine("Номер ветки 2(z>=1)\n");
 

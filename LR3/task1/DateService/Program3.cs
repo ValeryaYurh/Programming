@@ -37,7 +37,7 @@ namespace t3
 
                         string[] parts = date!.Split('.');
 
-                        while (parts.Length != 3 || parts[0].Length != 2 || parts[1].Length != 2 || parts[2].Length != 4 || Convert.ToInt32(parts[0])>31 || Convert.ToInt32(parts[0])<=0 || Convert.ToInt32(parts[1])>12 || Convert.ToInt32(parts[1])<=0 || Convert.ToInt32(parts[2])<0)
+                        while (parts.Length != 3 || parts[0].Length != 2 || parts[1].Length != 2 || parts[2].Length != 4 || Convert.ToInt32(parts[0]) > 31 || Convert.ToInt32(parts[0]) <= 0 || Convert.ToInt32(parts[1]) > 12 || Convert.ToInt32(parts[1]) <= 0 || Convert.ToInt32(parts[2]) < 0 || (!((Convert.ToInt32(parts[2]) % 4 ==0 && Convert.ToInt32(parts[2]) % 100 !=0) || Convert.ToInt32(parts[2]) % 400 ==0 ) && Convert.ToInt32(parts[0])>=29 && parts[1]=="02"))
                         {
                             Console.WriteLine("Ошибка! Введено некорректное значение.\n\nВведите дату(дд.мм.гггг): ");
 
@@ -53,7 +53,7 @@ namespace t3
                         string? input = Console.ReadLine();
                         isNumber = int.TryParse(input, out day);
 
-                        while (isNumber == false || input!.Length > 2 || input.Length < 2 || Convert.ToInt32(input)>31 || Convert.ToInt32(input)<=0 )
+                        while (isNumber == false || input!.Length > 2 || input.Length < 2 || Convert.ToInt32(input) > 31 || Convert.ToInt32(input) <= 0)
                         {
                             Console.WriteLine("Ошибка! Введено некорректное значение.\n\nВведите день: ");
 
@@ -66,7 +66,7 @@ namespace t3
                         input = Console.ReadLine();
                         isNumber = int.TryParse(input, out month);
 
-                        while (isNumber == false || input!.Length > 2 || input.Length < 2 || Convert.ToInt32(input)>12 || Convert.ToInt32(input)<=0)
+                        while (isNumber == false || input!.Length > 2 || input.Length < 2 || Convert.ToInt32(input) > 12 || Convert.ToInt32(input) <= 0)
                         {
                             Console.WriteLine("Ошибка! Введено некорректное значение.\n\nВведите месяц: ");
 
@@ -79,7 +79,7 @@ namespace t3
                         input = Console.ReadLine();
                         isNumber = int.TryParse(input, out year);
 
-                        while (isNumber == false || input!.Length > 4 || input.Length < 4 || Convert.ToInt32(input)<=0)
+                        while (isNumber == false || input!.Length > 4 || input.Length < 4 || Convert.ToInt32(input) <= 0 || (!((year % 4 ==0 && year % 100 !=0) || year % 400 ==0 ) && day>=29 && month== 02))
                         {
                             Console.WriteLine("Ошибка! Введено некорректное значение.\n\nВведите год: ");
 
