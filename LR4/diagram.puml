@@ -1,0 +1,39 @@
+@startuml TransportSystem
+skinparam classAttributeIconSize 0
+
+class "Tarif" as Tarif {
+  .. Поля (Fields) ..
+  - _typeName : string?
+  - _tarifValue : double
+  - _overallWeight : double
+  .. Свойства (Properties) ..
+  + TypeName : string? <<property>>
+  + TarifValue : double <<property>>
+  + OverAllWeight : double <<property>>
+  .. Методы (Methods) ..
+  + Tarif(typeName, tarifValue, overallWeight)
+  + CalculateRevenue() : double
+  + UpTarif(amount : double)
+  + UpTarif(amount : double, isPercentage : bool)
+  + DownTarif(amount : double)
+  + DownTarif(amount : double, isPercentage : bool)
+}
+
+class "TransportCompany" as TransportCompany {
+  .. Поля (Fields) ..
+  - _tarifs : List<Tarif>
+  - _companyName : string?
+  {static} - _instance : TransportCompany?
+  .. Свойства (Properties) ..
+  + CompanyName : string? <<property>>
+  .. Методы (Methods) ..
+  - TransportCompany()
+  {static} + GetInstance() : TransportCompany
+  {static} + GetBetterTarif(t1 : Tarif, t2 : Tarif) : Tarif
+  + AddNewTarif(newTarif : Tarif)
+  + CalculateTotalRevenue() : double
+}
+
+' Связь один-ко-многим через список _tarifs
+TransportCompany "1" *-- "0..*" Tarif : _tarifs
+@enduml
