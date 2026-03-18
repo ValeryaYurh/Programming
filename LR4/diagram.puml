@@ -13,10 +13,10 @@ class "Tarif" as Tarif {
   .. Методы (Methods) ..
   + Tarif(typeName, tarifValue, overallWeight)
   + CalculateRevenue() : double
-  + UpTarif(amount : double)
-  + UpTarif(amount : double, isPercentage : bool)
-  + DownTarif(amount : double)
-  + DownTarif(amount : double, isPercentage : bool)
+  + UpTarif(amount : double, isPercentage : bool) : double
+  + DownTarif(amount : double, isPercentage : bool) : double
+  + UpTarif(amount : double) : double
+  + DownTarif(amount : double) : double
 }
 
 class "TransportCompany" as TransportCompany {
@@ -29,11 +29,11 @@ class "TransportCompany" as TransportCompany {
   .. Методы (Methods) ..
   - TransportCompany()
   {static} + GetInstance() : TransportCompany
-  {static} + GetBetterTarif(t1 : Tarif, t2 : Tarif) : Tarif
-  + AddNewTarif(newTarif : Tarif)
   + CalculateTotalRevenue() : double
+  + AddNewTarif(newTarif : Tarif) : void
+  + FindTarifByName(name : string) : Tarif?
+  + PrintInfo() : void
 }
 
-' Связь один-ко-многим через список _tarifs
 TransportCompany "1" *-- "0..*" Tarif : _tarifs
 @enduml
