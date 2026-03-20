@@ -27,7 +27,7 @@ namespace Lab4
                 try
                 {
                     double result = double.Parse(input);
-                    if (result < 0) throw new Exception("число должно быть строго положительным.");
+                    if (result < 0) throw new Exception("значение не может быть отрицательным.");
                     return result;
                 }
                 catch (FormatException)
@@ -91,6 +91,11 @@ namespace Lab4
                             typeName = InputFixString(Console.ReadLine());
 
                             double tarifValue = InputFixDouble("Введите тариф за тонну: ");
+                            while (tarifValue == 0)
+                            {
+                                Console.WriteLine("Неверное значение, число должно быть строго больше 0");
+                                tarifValue = InputFixDouble("Введите тариф за тонну: ");
+                            }
                             double overallWeight = InputFixDouble("Введите перевезённый вес(в тоннах): ");
 
                             Tarif tarif = new Tarif(typeName!, tarifValue, overallWeight);
