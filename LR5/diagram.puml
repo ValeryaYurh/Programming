@@ -1,0 +1,69 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam classFontName "Consolas"
+skinparam classFontSize 12
+skinparam shadowing true
+skinparam ArrowColor #2E8B57
+skinparam ArrowThickness 2
+
+package "Transport Company" {
+    class TransportCompany {
+        - List<Tarif> _tarifs
+        - List<Client> _clients
+        - string? _companyName
+        - static TransportCompany? _instance
+        --
+        + string? CompanyName {get; set;}
+        + static TransportCompany GetInstance()
+        + void AddNewTarif(Tarif newTarif)
+        + void AddNewClient(Client newClient)
+        + void MakeOrder(Client client, Tarif tarif, double weight)
+        + double TotalRevenue()
+        + Tarif? FindTarifByName(string name)
+        + Client? FindClientByName(string name)
+        + void PrintInfo()
+    }
+}
+
+package "Clients Information" {
+    enum ClientType {
+        Regular
+        VIP
+    }
+
+    class Client {
+        - List<Order> _orders
+        --
+        + string? ClientName {get; set;}
+        + ClientType Type {get; set;}
+        + void AddOrder(Order order)
+        + double GetTotalSum()
+    }
+}
+
+package "Tarif Information" {
+    class Tarif {
+        + string TypeName {get; set;}
+        + double TarifValue {get; set;}
+        --
+        + Tarif(string typeName, double tarifValue)
+    }
+}
+
+package "Order Information" {
+    class Order {
+        + Tarif Tarif {get; set;}
+        + double Weight {get; set;}
+        --
+        + Order(Tarif tarif, double weight)
+        + double GetCost()
+    }
+}
+
+' Associations
+TransportCompany "1" --> "*" Client : manages >
+TransportCompany "1" --> "*" Tarif : offers >
+Client "1" --> "*" Order : places >
+Order "1" --> "1" Tarif : applies >
+
+@enduml
