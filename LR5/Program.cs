@@ -33,9 +33,19 @@ namespace Lab5
             company.MakeOrder(client1, tarif2, 2.21);
             company.MakeOrder(client2, tarif2, 0.34);
 
-            Console.WriteLine(company.FindClientByName("valerya"));
+            if(company.FindClientByName("natasha") != null)
+            {
+                Client client = company.FindClientByName("natasha");
+                Console.WriteLine($"\nName of the client: {client.ClientName}\nTotal cost of orders of the client: {client.GetTotalSum()}");
+                if(client.Type==ClientType.VIP) Console.WriteLine("Type of client: VIP");
+                else Console.WriteLine("Type of client: Regular");
+            }
+            else
+            {
+                Console.WriteLine("There is no such client");
+            }
 
-            Console.WriteLine($"Total revenue : {company.TotalRevenue()}");
+            Console.WriteLine($"Total revenue of company: {company.TotalRevenue()}");
             company.PrintInfo();
         
         }
