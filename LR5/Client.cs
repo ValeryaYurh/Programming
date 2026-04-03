@@ -10,7 +10,15 @@ namespace ClientsInformation
     }
     public class Client
     {
-        public string? ClientName { get; set; }
+        public string? ClientName 
+        { 
+            get; 
+            set 
+            { 
+                if (!string.IsNullOrWhiteSpace(value)) ClientName = value;
+                else throw new Exception("The name has to have a value"); 
+            }  
+        }
         private List<Order> _orders = new List<Order>();
 
         public void AddOrder(Order order)
@@ -18,7 +26,15 @@ namespace ClientsInformation
             if (order != null) _orders.Add(order);
         }
 
-        public ClientType Type { get; set; }
+        public ClientType Type 
+        { 
+            get; 
+            set
+            { 
+                if (Enum.IsDefined(typeof(ClientType), value)) Type = value; 
+                else throw new Exception("The client type is not defined");
+            } 
+        }
 
         public double GetTotalSum()
         {
